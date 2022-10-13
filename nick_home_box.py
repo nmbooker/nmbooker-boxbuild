@@ -7,6 +7,7 @@ from typing import AbstractSet, Iterable, Set, TypeAlias
 
 from heredocs import heredoc
 
+
 Hostname: TypeAlias = str
 FlatpakName: TypeAlias = str
 GnomeExtension: TypeAlias = str
