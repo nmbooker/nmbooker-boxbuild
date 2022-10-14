@@ -77,8 +77,13 @@ roles: dict[Role, frozenset[PackageName]] = {
         'python-mypy', # <- to type-check this script when editing
     }),
     'games': frozenset({'mono-core', 'mono-devel', 'steam'}),
-    'gnome': frozenset({'chrome-gnome-shell', 'gnome-tweaks'}),
-        # chrome-gnome-shell enables Firefox etc extensions integration
+    'gnome': frozenset({
+        'chrome-gnome-shell',
+            # chrome-gnome-shell enables Firefox etc extensions integration
+        'gnome-tweaks',
+        'seahorse-nautilus',
+            # gpg file encryption, decryption and signing
+    }),
     'home': frozenset({
         'code',
         'deja-dup',
