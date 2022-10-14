@@ -234,7 +234,7 @@ def packages_for_roles(requested_roles: AbstractSet[Role]) \
 
 
 def main() -> None:
-    machine_name = gethostname()
+    machine_name = gethostname().split('.')[0]
     if machine_name not in machine_roles:
         sys.stderr.write(heredoc(f"""
             Hostname {machine_name} not declared in machine_roles
