@@ -33,10 +33,18 @@ def yumrepo(name, filestem, baseurl, gpg_key_url):
 
 
 machine_roles: dict[Hostname, set[Role]] = {
-    'jay': {'common', 'gnome', 'home', 'work'},
-    'jake': {'common', 'gnome', 'work'},
-    'missy': {'common', 'gnome', 'work'},
-    'vimes': {'common', 'games', 'gnome', 'home', 'lazyscan-deps', 'nvidia'},
+    'jay': {'common', 'gnome', 'home', 'laptop', 'work'},
+    'jake': {'common', 'gnome', 'laptop', 'work'},
+    'missy': {'common', 'gnome', 'laptop', 'work'},
+    'vimes': {
+        'common',
+        'games',
+        'gnome',
+        'home',
+        'lazyscan-deps',
+        'laptop',
+        'nvidia',
+    },
 }
 
 dnf_repos: dict[RepoTag, dict] = {
@@ -74,12 +82,16 @@ gnome_extensions: dict[Role, frozenset[GnomeExtension]] = {
 roles: dict[Role, frozenset[PackageName]] = {
     'common': frozenset({
         'firewall-config',
+        'htop',
+        'python3-pip',
+        'seahorse',
         'python-mypy', # <- to type-check this script when editing
     }),
     'games': frozenset({'mono-core', 'mono-devel', 'steam'}),
     'gnome': frozenset({
         'chrome-gnome-shell',
             # chrome-gnome-shell enables Firefox etc extensions integration
+        'gnome-power-manager', # power statistics
         'gnome-tweaks',
         'seahorse-nautilus',
             # gpg file encryption, decryption and signing
@@ -94,6 +106,9 @@ roles: dict[Role, frozenset[PackageName]] = {
         'neovim',
         'syncthing',
         'vim-enhanced',
+    }),
+    'laptop': frozenset({
+        'powertop',
     }),
     'lazyscan-deps': frozenset({
         'ImageMagick',
@@ -130,6 +145,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'thunderbird',
         'thunderbird-wayland',
         'vim-enhanced',
+        'wireguard-tools', # VPN
         'xournalpp',
     }),
 }
