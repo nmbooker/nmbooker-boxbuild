@@ -132,8 +132,6 @@ roles: dict[Role, frozenset[PackageName]] = {
         'code',
         'dotnet-sdk-6.0',
             # ^ For "CPAN hour"
-        'epiphany',
-            # ^ For PWA track.toggl.com
         'gajim',
         'kwrite',
             # ^ Multi-window text editor
