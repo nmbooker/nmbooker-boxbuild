@@ -138,6 +138,10 @@ roles: dict[Role, frozenset[PackageName]] = {
         'keepassxc',
         'neovim',
         'nextcloud-client',
+        'npm',
+            # ^ The elm VSCode stuff needs npm, for example.
+            # ^ For further setup instructions:
+            # ^     https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode
         'okular',
             # ^ more feature complete annotations than evince
         'thunderbird',
