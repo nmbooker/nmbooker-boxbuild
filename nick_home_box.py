@@ -133,6 +133,8 @@ roles: dict[Role, frozenset[PackageName]] = {
         'code',
         'dotnet-sdk-6.0',
             # ^ For "CPAN hour"
+        'fd-find',
+            # ^ an optional dependency for doomemacs
         'gajim',
         'git',
         'kwrite',
@@ -146,6 +148,8 @@ roles: dict[Role, frozenset[PackageName]] = {
             # ^     https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode
         'okular',
             # ^ more feature complete annotations than evince
+        'ripgrep',
+            # ^ for doomemacs
         'thunderbird',
         'thunderbird-wayland',
         'vim-enhanced',
