@@ -129,6 +129,7 @@ roles: dict[Role, frozenset[PackageName]] = {
     }),
     'nvidia': frozenset({'akmod-nvidia'}),
     'work': frozenset({
+        'emacs',
         'code',
         'dotnet-sdk-6.0',
             # ^ For "CPAN hour"
