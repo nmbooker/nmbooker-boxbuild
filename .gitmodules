@@ -1,0 +1,3 @@
+[submodule "src/powerkit"]
+	path = src/powerkit
+	url = https://github.com/rodlie/powerkit.git

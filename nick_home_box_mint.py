@@ -140,9 +140,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'libstroke0',
         'pnmixer',
         # powerkit deps:
-            # qmake:
-                'qtchooser',
-                'qt5-qmake',
+            'cmake',
             'qtbase5-dev',
             'libx11-dev',
             'libxrandr-dev',
@@ -222,25 +220,14 @@ roles: dict[Role, frozenset[PackageName]] = {
 
 def install_powerkit():
     with tempfile.TemporaryDirectory() as powerkit_build_parent_dirname:
-        run([
-            'tar',
-            '-x',
-            '-f', 'src/powerkit-1.0.0.tar.xz',
-            '-C', powerkit_build_parent_dirname,
-        ])
+        run(['cp', '-r', 'src/powerkit', powerkit_build_parent_dirname])
         source_dir = os.path.join(
             powerkit_build_parent_dirname,
-            'powerkit-1.0.0',
+            'powerkit',
         )
         build_dir = os.path.join(source_dir, 'build')
         os.mkdir(build_dir)
-        run(
-            [
-                'qmake',
-                'CONFIG+=bundle_icons',
-                '..'
-            ],
-            cwd=build_dir)
+        run(['cmake', '..'], cwd=build_dir)
         run(['make'], cwd=build_dir)
         run(['sudo', 'make', 'install'], cwd=build_dir)
 
