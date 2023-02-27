@@ -37,11 +37,11 @@ machine_roles: dict[Hostname, set[Role]] = {
     'vimes': {
         'common',
         'games',
-        'gnome',
         'home',
-        'lazyscan-deps',
+        # 'lazyscan-deps',
         'laptop',
-        'nvidia',
+        # GUI prompts for nvidia setup - go with that
+        'xfce',
     },
 }
 
@@ -103,12 +103,17 @@ gnome_extensions: dict[Role, frozenset[GnomeExtension]] = {
 
 roles: dict[Role, frozenset[PackageName]] = {
     'common': frozenset({
+        'emacs',
+        'fd-find',
+            # ^ an optional dependency for doomemacs
         'htop',
         'python3-pip',
-        'seahorse',
         'python3-mypy', # <- to type-check this script when editing
+        'ripgrep',
+            # ^ for doomemacs
+        'seahorse',
     }),
-    'games': frozenset({'mono-core', 'mono-devel', 'steam'}),
+    'games': frozenset({'mono-devel', 'steam'}),
     'cinnamon': frozenset({
         'nemo-seahorse',
             # gpg file encryption, decryption and signing
@@ -126,11 +131,11 @@ roles: dict[Role, frozenset[PackageName]] = {
         'deja-dup',
         'dotnet-sdk-6.0', # For F#
         'haskell-platform',
-        'java-11-openjdk-devel',  # for the Java Udemy course
+        'openjdk-11-jdk',  # for the Java Udemy course
         'keepassxc',
         'neovim',
         'syncthing',
-        'vim-enhanced',
+        'vim',
     }),
     'laptop': frozenset({
         'powertop',
@@ -158,8 +163,6 @@ roles: dict[Role, frozenset[PackageName]] = {
         'code',
         'dotnet-sdk-6.0',
             # ^ For "CPAN hour"
-        'fd-find',
-            # ^ an optional dependency for doomemacs
         'gajim',
         'git',
         'kwrite',
@@ -173,12 +176,11 @@ roles: dict[Role, frozenset[PackageName]] = {
             # ^     https://marketplace.visualstudio.com/items?itemName=Elmtooling.elm-ls-vscode
         'okular',
             # ^ more feature complete annotations than evince
-        'ripgrep',
-            # ^ for doomemacs
         'vim',
         'wireguard-tools', # VPN
         'xournalpp',
     }),
+    'xfce': frozenset({'gigolo'}),
 }
 
 dependent_packages: dict[PackageName, Set[Role]] = {
