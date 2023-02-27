@@ -112,6 +112,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'ripgrep',
             # ^ for doomemacs
         'seahorse',
+        'stow',
     }),
     'games': frozenset({'mono-devel', 'steam'}),
     'cinnamon': frozenset({
