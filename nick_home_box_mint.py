@@ -7,7 +7,7 @@ from subprocess import run, DEVNULL
 from socket import gethostname
 import sys
 import tempfile
-from typing import AbstractSet, Iterable, Set, TypeAlias
+from typing import AbstractSet, Callable, Iterable, Set, TypeAlias
 
 from heredocs import heredoc
 
@@ -139,6 +139,14 @@ roles: dict[Role, frozenset[PackageName]] = {
         'libfile-mimeinfo-perl',
         'libstroke0',
         'pnmixer',
+        # powerkit deps:
+            # qmake:
+                'qtchooser',
+                'qt5-qmake',
+            'qtbase5-dev',
+            'libx11-dev',
+            'libxrandr-dev',
+            'libxss-dev',
         'python3',
         'python3-pyqt5',
         'python3-xdg',
@@ -210,6 +218,34 @@ roles: dict[Role, frozenset[PackageName]] = {
         'xournalpp',
     }),
     'xfce': frozenset({'gigolo'}),
+}
+
+def install_powerkit():
+    with tempfile.TemporaryDirectory() as powerkit_build_parent_dirname:
+        run([
+            'tar',
+            '-x',
+            '-f', 'src/powerkit-1.0.0.tar.xz',
+            '-C', powerkit_build_parent_dirname,
+        ])
+        source_dir = os.path.join(
+            powerkit_build_parent_dirname,
+            'powerkit-1.0.0',
+        )
+        build_dir = os.path.join(source_dir, 'build')
+        os.mkdir(build_dir)
+        run(
+            [
+                'qmake',
+                'CONFIG+=bundle_icons',
+                '..'
+            ],
+            cwd=build_dir)
+        run(['make'], cwd=build_dir)
+        run(['sudo', 'make', 'install'], cwd=build_dir)
+
+at_end: dict[Role, list[Callable]] = {
+    'nscde-deps': [install_powerkit],
 }
 
 dependent_packages: dict[PackageName, Set[Role]] = {
@@ -334,6 +370,10 @@ def packages_for_roles(requested_roles: AbstractSet[Role]) \
         | packages_for_role_combinations(requested_roles)
     )
 
+def run_at_end_hooks_for_roles(requested_roles: AbstractSet[Role]) -> None:
+    for role in requested_roles:
+        for role_at_end_hook in at_end.get(role, []):
+            role_at_end_hook()
 
 def main() -> None:
     machine_name = gethostname().split('.')[0]
@@ -362,6 +402,7 @@ def main() -> None:
         required_flatpaks =\
             flatpaks_for_individual_roles(requested_roles)
         install_flatpaks_from_flathub(required_flatpaks)
+        run_at_end_hooks_for_roles(requested_roles)
 
 
 
