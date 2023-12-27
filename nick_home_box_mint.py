@@ -93,7 +93,7 @@ flatpaks: dict[Role, Set[FlatpakName]] = {
         # 'com.mattjakeman.ExtensionManager',
     },
     'work': {
-        'com.brave.Browser',
+        # 'com.brave.Browser',
             # ^ for PWAs (as first choice if works)
             # ^ and for Jitsi meetings (due to Chromium engine)
     },
@@ -195,15 +195,15 @@ roles: dict[Role, frozenset[PackageName]] = {
     'work': frozenset({
         'emacs',
         'code',
-        'dotnet-sdk-6.0',
+        # 'dotnet-sdk-6.0',
             # ^ For "CPAN hour"
-        'gajim',
+        # 'gajim',
         'git',
         'kwrite',
             # ^ Multi-window text editor
         'keepassxc',
         'neovim',
-        'nextcloud-desktop',
+        # 'nextcloud-desktop',
         'npm',
             # ^ The elm VSCode stuff needs npm, for example.
             # ^ For further setup instructions:
