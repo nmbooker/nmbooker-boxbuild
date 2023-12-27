@@ -32,7 +32,8 @@ def yumrepo(repo_lines, filestem, gpg_key_url, gpg_key_basename):
 
 machine_roles: dict[Hostname, set[Role]] = {
     'jay': {'common', 'gnome', 'home', 'laptop', 'work'},
-    'jake': {'common', 'cinnamon', 'laptop', 'work'},
+    #'jake': {'common', 'cinnamon', 'laptop', 'work'},
+    'jake': {'common', 'mate', 'laptop', 'work'},
     'missy': {'common', 'gnome', 'laptop', 'work'},
     'vimes': {
         'common',
@@ -126,6 +127,10 @@ roles: dict[Role, frozenset[PackageName]] = {
         'gnome-power-manager', # power statistics
         'gnome-tweaks',
         'seahorse-nautilus',
+            # gpg file encryption, decryption and signing
+    }),
+    'mate': frozenset({
+        'caja-seahorse',
             # gpg file encryption, decryption and signing
     }),
     'nscde-deps': frozenset({
