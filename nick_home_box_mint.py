@@ -163,9 +163,9 @@ roles: dict[Role, frozenset[PackageName]] = {
     'home': frozenset({
         'code',
         'deja-dup',
-        'dotnet-sdk-6.0', # For F#
-        'haskell-platform',
-        'openjdk-11-jdk',  # for the Java Udemy course
+        #'dotnet-sdk-6.0', # For F#
+        #'haskell-platform',
+        #'openjdk-11-jdk',  # for the Java Udemy course
         'keepassxc',
         'neovim',
         'syncthing',
