@@ -34,8 +34,8 @@ machine_roles: dict[Hostname, set[Role]] = {
     'jay': {'common', 'gnome', 'home', 'laptop', 'work'},
     #'jake': {'common', 'cinnamon', 'laptop', 'work'},
     'jake': {'common', 'mate', 'laptop', 'work'},
+    'maelstrom': {'common', 'mate', 'home'},
     'missy': {'common', 'gnome', 'laptop', 'work'},
-    'ogg': {'common', 'mate', 'home'},
     'vimes': {
         'common',
         'games',
