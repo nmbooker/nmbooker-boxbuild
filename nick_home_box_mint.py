@@ -109,6 +109,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'emacs',
         'fd-find',
             # ^ an optional dependency for doomemacs
+        'git',
         'hplip-gui',
         'htop',
         'python3-pip',
