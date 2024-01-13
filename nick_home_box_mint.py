@@ -35,6 +35,7 @@ machine_roles: dict[Hostname, set[Role]] = {
     #'jake': {'common', 'cinnamon', 'laptop', 'work'},
     'jake': {'common', 'mate', 'laptop', 'work'},
     'missy': {'common', 'gnome', 'laptop', 'work'},
+    'ogg': {'common', 'mate', 'home'},
     'vimes': {
         'common',
         'games',
@@ -108,6 +109,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'emacs',
         'fd-find',
             # ^ an optional dependency for doomemacs
+        'hplip-gui',
         'htop',
         'python3-pip',
         'python3-mypy', # <- to type-check this script when editing
@@ -132,6 +134,7 @@ roles: dict[Role, frozenset[PackageName]] = {
     'mate': frozenset({
         'caja-seahorse',
             # gpg file encryption, decryption and signing
+        'dconf-editor',
     }),
     'nscde-deps': frozenset({
         'cbatticon',
@@ -169,7 +172,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'keepassxc',
         'neovim',
         'syncthing',
-        'vim',
+        'vim-gtk',
     }),
     'laptop': frozenset({
         'powertop',
