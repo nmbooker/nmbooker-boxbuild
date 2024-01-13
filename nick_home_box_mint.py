@@ -88,7 +88,7 @@ package_dnf_repos: dict[PackageName, set[RepoTag]] = {
 
 flatpaks: dict[Role, Set[FlatpakName]] = {
     'common': {
-        'com.github.tchx84.Flatseal',
+        #'com.github.tchx84.Flatseal',
     },
     'gnome': {
         # 'com.mattjakeman.ExtensionManager',
