@@ -173,6 +173,7 @@ roles: dict[Role, frozenset[PackageName]] = {
         'keepassxc',
         'neovim',
         'syncthing',
+        'syncthing-gtk',
         'vim-gtk',
     }),
     'laptop': frozenset({
